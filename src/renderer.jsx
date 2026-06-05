@@ -488,7 +488,7 @@ function ShopScreen({eventData, onAction, theme, player, isAI, queueInfo}){
         <div className="page-transition" style={{position:"fixed",inset:0,background:`rgba(0,0,0,0.92)`,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",zIndex:'var(--z-event-popup)',padding:24,gap:18, backdropFilter:"blur(12px)", fontFamily:T.font, overflowY:'auto'}}>
           {/* Bandeau queueInfo : indique le tour boutique courant en multi-joueurs */}
           {queueInfo && queueInfo.total > 1 && (
-              <div style={{position:'absolute', top:'var(--sp-md)', left:'50%', transform:'translateX(-50%)', background:'linear-gradient(135deg,#a855f733,#a855f711)', border:'1px solid #a855f7', borderRadius:99, padding:'var(--sp-xs) var(--sp-md)', color:'#e9d5ff', fontWeight:800, fontSize:'var(--f-sm)', letterSpacing:1, display:'flex', alignItems:'center', gap:'var(--sp-sm)', boxShadow:'0 4px 18px rgba(168,85,247,0.4)'}}>
+              <div style={{position:'absolute', top:'var(--sp-md)', left:'50%', transform:'translateX(-50%)', background:'linear-gradient(135deg,#a855f733,#a855f711)', border:'1px solid #a855f7', borderRadius:99, padding:'var(--sp-xs) var(--sp-md)', color:'#e9d5ff', fontWeight:800, fontSize:'var(--f-sm)', letterSpacing:1, display:'flex', alignItems:'center', gap:'var(--sp-sm)', boxShadow:'0 4px 18px rgba(168,85,247,0.4)', maxWidth:'min(96vw, 600px)', overflow:'hidden', whiteSpace:'nowrap'}}>
                   <span>🛒</span>
                   <span>Boutique • {queueInfo.current}/{queueInfo.total}</span>
                   <span style={{padding:'1px 8px', background:'rgba(0,0,0,0.4)', borderRadius:99, fontSize:'var(--f-xs)'}}>{queueInfo.playerName} — à toi d'acheter</span>
@@ -627,7 +627,7 @@ function Win({winnerIsAI,players,aiPlayer,diff,turns,onReplay,onMenu,theme,setSc
       <div style={{display:"flex",gap:24,width:"100%",maxWidth:900,zIndex:2,flexWrap:"wrap",justifyContent:"center"}}>
         {ph>=2&&allP.length>1&&(
           <div style={{flex:"1 1 320px",background:"rgba(4,8,20,.95)",border:"1px solid rgba(255,255,255,.06)",borderRadius:20,padding:20,animation:"sil .5s both"}}>
-            <p style={{color:"#1e293b",fontSize:10,textTransform:"uppercase",letterSpacing:4,margin:"0 0 14px",fontWeight:700,textAlign:"center"}}>Classement final</p>
+            <p style={{color:"#64748b",fontSize:10,textTransform:"uppercase",letterSpacing:4,margin:"0 0 14px",fontWeight:700,textAlign:"center"}}>Classement final</p>
             {[...allP].sort((a,b)=>b.km-a.km).map((p,i)=>{const c=PC[p.colorIdx||0];return(
               <div key={i} style={{display:"flex",alignItems:"center",gap:12,padding:"10px 14px",borderRadius:12,marginBottom:8,background:i===0?`${c.main}12`:"rgba(255,255,255,.02)",border:i===0?`1px solid ${c.main}44`:"1px solid rgba(255,255,255,.04)",animation:`sin .4s ${i*80}ms both`}}>
                 <span style={{fontSize:22,flexShrink:0}}>{["🥇","🥈","🥉","4️⃣","5️⃣","6️⃣","7️⃣"][i]}</span>
@@ -638,7 +638,7 @@ function Win({winnerIsAI,players,aiPlayer,diff,turns,onReplay,onMenu,theme,setSc
         )}
         {ph>=3&&(
           <div style={{flex:"1 1 300px",background:"rgba(4,8,20,.95)",border:"1px solid rgba(255,255,255,.06)",borderRadius:20,padding:20,animation:"sir .5s both"}}>
-            <p style={{color:"#1e293b",fontSize:10,textTransform:"uppercase",letterSpacing:4,margin:"0 0 14px",fontWeight:700,textAlign:"center"}}>Décompte des points</p>
+            <p style={{color:"#64748b",fontSize:10,textTransform:"uppercase",letterSpacing:4,margin:"0 0 14px",fontWeight:700,textAlign:"center"}}>Décompte des points</p>
             {rows.map((r,i)=><div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",background:"rgba(255,255,255,.03)",borderRadius:10,padding:"9px 14px",borderLeft:`3px solid ${r.color}`,marginBottom:8,animation:`sin .4s ${i*100}ms both`}}>
               <span style={{fontSize:13,color:"#64748b"}}>{r.l}</span>
               <span style={{fontSize:16,fontWeight:900,color:r.color}}>+{r.pts.toLocaleString()}</span>
@@ -1109,7 +1109,7 @@ function LobbyHost({onBack, onStart, theme, meta}){
                                             <span style={{fontSize:'var(--f-xs)', padding:'2px 6px', borderRadius:99, background: ip.isHamachi ? 'rgba(124,58,237,0.3)' : 'rgba(59,130,246,0.2)', color: ip.isHamachi ? '#c4b5fd' : '#93c5fd', fontWeight:800, letterSpacing:1}}>
                                                 {ip.isHamachi ? 'HAMACHI' : ip.isVirtual ? 'VIRT' : ip.isPrivate ? 'LAN' : 'NET'}
                                             </span>
-                                            <span style={{fontSize:'var(--f-sm)', color:'#cbd5e1', fontWeight:700,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{ip.address}</span>
+                                            <span style={{fontSize:'var(--f-sm)', color:'#cbd5e1', fontWeight:700,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap',minWidth:0,flex:1}}>{ip.address}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -1318,7 +1318,7 @@ function LobbyJoin({onBack, onJoined, theme, meta}){
         <div className="page-transition" style={{height:"100%",width:"100%",background:`radial-gradient(ellipse at 50% 0%,${T.bg2},${T.bg} 70%)`,display:"flex",alignItems:"center",justifyContent:"center",padding:'var(--sp-lg)',position:"relative",overflow:"auto", fontFamily:T.font}}>
             <DynamicBG theme={theme} inGame={false}/>
             <Pts color={T.particle} count={14}/>
-            <div style={{background:"rgba(4,8,20,.94)",border:`2px solid ${T.a1}`,borderRadius:'var(--rad-lg)',padding:'var(--sp-xl)',width:"100%",maxWidth:status==='connected'?'min(calc(1180px * var(--ui-scale)), 98vw)':'min(calc(640px * var(--ui-scale)), 96vw)',maxHeight:'94vh',overflowY:'auto',position:"relative",zIndex:1,animation:"zin .35s both", backdropFilter:"blur(10px)", boxShadow:`0 0 0 1px ${T.a1}44, 0 0 60px ${T.a1}33`}}>
+            <div style={{background:"rgba(4,8,20,.94)",border:`2px solid ${T.a1}`,borderRadius:'var(--rad-lg)',padding:'var(--sp-xl)',width:"100%",maxWidth:status==='connected'?'min(calc(1180px * var(--ui-scale)), 98vw)':'min(calc(640px * var(--ui-scale)), 96vw)',maxHeight:'94vh',overflowY:'auto',position:"relative",zIndex:1,animation:"zin .35s both",transition:"max-width .35s cubic-bezier(.4,0,.2,1)", backdropFilter:"blur(10px)", boxShadow:`0 0 0 1px ${T.a1}44, 0 0 60px ${T.a1}33`}}>
                 <button onClick={()=>{AudioSys.click(); onBack();}} style={{background:"none",border:"none",color:"#cbd5e1",cursor:"pointer",fontSize:'var(--f-sm)',fontWeight:600,marginBottom:'var(--sp-md)',padding:0}}>← Retour</button>
                 <h2 className="neon" style={{fontSize:'var(--f-xxl)',fontWeight:900,color:T.a1,marginBottom:'var(--sp-lg)',letterSpacing:3,textAlign:"center",textShadow:`0 0 14px ${T.a1}`}}>🔗 REJOINDRE UNE PARTIE</h2>
 
@@ -3843,7 +3843,7 @@ function Game({diff,theme,onBack,setScores,skin,meta,cfg,appZoom,setAppZoom,open
             <div style={{fontSize:"var(--f-lg)",fontWeight:900,color:"#e2e8f0"}}>{turns+1}</div>
           </div>
           <div style={{width:1,height:'calc(28px * var(--ui-scale))',background:"rgba(255,255,255,0.12)"}}/>
-          <div style={{textAlign:"center",minWidth:'calc(90px * var(--ui-scale))'}}>
+          <div style={{textAlign:"center",minWidth:'calc(90px * var(--ui-scale))',overflow:"hidden"}}>
             <div style={{fontSize:"var(--f-xs)",color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:1}}>Joueur</div>
             <div style={{fontSize:"var(--f-md)",fontWeight:900,color:curC.main,maxWidth:'calc(160px * var(--ui-scale))',overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{curP?`${curC.emoji} ${curP.name}`:isAITurn?"IA...":""}</div>
           </div>
