@@ -1,12 +1,12 @@
 {
   "name": "Miles_Borne",
-  "version": "8.25.23",
+  "version": "8.25.24",
   "description": "Jeu Mille Bornes",
   "main": "main.js",
   "scripts": {
     "clean": "node -e \"const fs=require('fs'); if(fs.existsSync('assets/renderer.js')) fs.unlinkSync('assets/renderer.js');\"",
-    "build:renderer:dev": "esbuild src/renderer.jsx --sourcemap --outfile=assets/renderer.js",
-    "build:renderer:prod": "esbuild src/renderer.jsx --minify --outfile=assets/renderer.js",
+    "build:renderer:dev": "esbuild src/renderer.jsx --bundle --sourcemap --outfile=assets/renderer.js",
+    "build:renderer:prod": "esbuild src/renderer.jsx --bundle --minify --outfile=assets/renderer.js",
     "start": "npm run clean && npm run build:renderer:dev && electron .",
     "prebuild": "npm run clean && node scripts/bump-version.js && npm run build:renderer:prod",
     "build": "electron-builder --win",

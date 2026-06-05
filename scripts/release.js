@@ -34,7 +34,7 @@ if (DRY) {
 }
 
 // ── 2. Build renderer (minifié) ────────────────────────────────────────────
-run('esbuild src/renderer.jsx --minify --outfile=assets/renderer.js');
+run('esbuild src/renderer.jsx --bundle --minify --outfile=assets/renderer.js');
 
 // ── 3. Electron-builder ────────────────────────────────────────────────────
 run('electron-builder --win');

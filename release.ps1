@@ -50,7 +50,7 @@ if ($DryRun) {
 
 # ── 3. Build renderer (minifie) ─────────────────────────────────────────────
 Write-Step "Build renderer (esbuild --minify)"
-npx esbuild "$Root\src\renderer.jsx" --minify "--outfile=$Root\assets\renderer.js"
+npx esbuild "$Root\src\renderer.jsx" --bundle --minify "--outfile=$Root\assets\renderer.js"
 if ($LASTEXITCODE -ne 0) { Write-Host "ERREUR esbuild" -ForegroundColor Red; exit 1 }
 
 # ── 4. Electron-builder ──────────────────────────────────────────────────────
