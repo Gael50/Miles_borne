@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+dist_electron/
+out/
+release/
+*.exe
+*.asar
+
+# Test outputs
+test-results/
+playwright-report/
+coverage/
+
+# Local logs and caches
+*.log
+debug.log
+.cache/
+.tmp/
+tmp/
+
+# Local MCP / agent runtime data
+.agents/
+.claude/
+.codex/
+.mcp-data/
+audit-memory/
+ruvector.db
+
+# Generated backups and local migration snapshots
+BACKUP_Index/
+*.bak
+*.pre-v*.html
+*.pre-v*.js
+*.pre-v*.json
+
+# OS / editor noise
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+.idea/

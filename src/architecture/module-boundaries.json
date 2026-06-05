@@ -1,0 +1,71 @@
+{
+  "requiredPaths": [
+    "src/app",
+    "src/core",
+    "src/entities",
+    "src/entities/cards/effects/apply-action.js",
+    "src/entities/cards/effects/apply-attack.js",
+    "src/entities/cards/effects/apply-self.js",
+    "src/entities/cards/targeting/card-targeting.js",
+    "src/features",
+    "src/features/deck-discard/deck-actions.js",
+    "src/features/game-runtime/played-card-consumption.js",
+    "src/features/game-runtime/process-play-adapter.js",
+    "src/features/game-runtime/process-play-self-adapter.js",
+    "src/shared",
+    "src/widgets",
+    "src/pages",
+    "src/themes",
+    "src/assets",
+    "docs/architecture/ARCHITECTURE.md",
+    "docs/architecture/EXTRACTION_LEDGER.md",
+    "docs/architecture/EXTRACTION_ROADMAP.md",
+    "docs/architecture/MODULE_BOUNDARIES.md",
+    "docs/architecture/MIGRATION_PLAN.md",
+    "docs/architecture/PROCESS_PLAY_MAP.md",
+    "docs/architecture/ROLLBACK.md",
+    "docs/architecture/VALIDATION_MATRIX.md"
+  ],
+  "layers": {
+    "shared": {
+      "path": "src/shared",
+      "mayImport": []
+    },
+    "core": {
+      "path": "src/core",
+      "mayImport": ["src/shared"]
+    },
+    "entities": {
+      "path": "src/entities",
+      "mayImport": ["src/core", "src/shared", "src/themes"]
+    },
+    "features": {
+      "path": "src/features",
+      "mayImport": ["src/core", "src/entities", "src/shared", "src/themes"]
+    },
+    "widgets": {
+      "path": "src/widgets",
+      "mayImport": ["src/core", "src/entities", "src/features", "src/shared", "src/themes"]
+    },
+    "pages": {
+      "path": "src/pages",
+      "mayImport": ["src/core", "src/entities", "src/features", "src/shared", "src/themes", "src/widgets"]
+    },
+    "app": {
+      "path": "src/app",
+      "mayImport": ["src/core", "src/entities", "src/features", "src/shared", "src/themes", "src/widgets", "src/pages"]
+    },
+    "themes": {
+      "path": "src/themes",
+      "mayImport": ["src/shared", "src/entities"]
+    },
+    "electron": {
+      "path": "src/electron",
+      "mayImport": ["src/app", "src/core", "src/shared"]
+    }
+  },
+  "forbiddenImportPatterns": [
+    "../../../",
+    "index.html"
+  ]
+}

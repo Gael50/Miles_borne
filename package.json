@@ -1,0 +1,42 @@
+{
+  "name": "Miles_Borne",
+  "version": "8.25.17",
+  "description": "Jeu Mille Bornes",
+  "main": "main.js",
+  "scripts": {
+    "clean": "node -e \"const fs=require('fs'); if(fs.existsSync('assets/renderer.js')) fs.unlinkSync('assets/renderer.js');\"",
+    "build:renderer:dev": "esbuild src/renderer.jsx --sourcemap --outfile=assets/renderer.js",
+    "build:renderer:prod": "esbuild src/renderer.jsx --minify --outfile=assets/renderer.js",
+    "start": "npm run clean && npm run build:renderer:dev && electron .",
+    "prebuild": "npm run clean && node scripts/bump-version.js && npm run build:renderer:prod",
+    "build": "electron-builder --win",
+    "test:e2e": "playwright test",
+    "arch:check": "node scripts/architecture/check-module-boundaries.cjs"
+  },
+  "build": {
+    "appId": "com.nathan.milesborne",
+    "files": [
+      "index.html",
+      "main.js",
+      "server.js",
+      "netclient.js",
+      "netinfo.js",
+      "src/**/*",
+      "assets/**/*",
+      "PHONE_MODE_GUIDE.md",
+      "icon.ico",
+      "package.json"
+    ],
+    "win": {
+      "target": "portable"
+    }
+  },
+  "author": "Nathan",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "electron": "^42.1.0",
+    "electron-builder": "^26.8.1",
+    "esbuild": "^0.28.0"
+  }
+}
