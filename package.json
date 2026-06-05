@@ -1,6 +1,6 @@
 {
   "name": "Miles_Borne",
-  "version": "8.25.18",
+  "version": "8.25.22",
   "description": "Jeu Mille Bornes",
   "main": "main.js",
   "scripts": {
@@ -11,6 +11,8 @@
     "prebuild": "npm run clean && node scripts/bump-version.js && npm run build:renderer:prod",
     "build": "electron-builder --win",
     "test:e2e": "playwright test",
+    "release": "node scripts/release.js",
+    "release:dry": "node scripts/release.js --dry-run",
     "arch:check": "node scripts/architecture/check-module-boundaries.cjs"
   },
   "build": {
